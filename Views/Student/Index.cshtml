@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+
+<h2>Index</h2>
+ 
+ 
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>FIRSTNAME</th>
+        <th>LASTNAME</th>
+        <th>CONTACT</th>
+        <th>DOB</th>
+        <th>ACTION</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model.Tables[0].Rows)
+        {
+            <tr>
+                <td>@item["id"]</td>
+                <td>@item["firstName"]</td>
+                <td>@item["lastName"]</td>
+                <td>@item["contact"]</td>
+                <td>@item["DOB"]</td>
+                <td><button>Edit</button></td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
