@@ -18,10 +18,10 @@
         <th>DOB</th>
         <th>ACTION</th>
     </tr>
-    <tbody>
+    <tbody id="List_result">
         @foreach (var item in Model.Tables[0].Rows)
         {
-            <tr>
+            <tr style="display:none">
                 <td>@item["id"]</td>
                 <td>@item["firstName"]</td>
                 <td>@item["lastName"]</td>
@@ -34,3 +34,5 @@
 
     </tbody>
 </table>
+
+<script src="~/Scripts_js/StudentList.js" type="text/javascript"></script>
