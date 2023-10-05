@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Configuration;
 using System.Data;
 using Newtonsoft.Json;
+using System.Web.UI.WebControls;
 
 namespace Test_crud.Controllers
 {
@@ -58,9 +59,33 @@ namespace Test_crud.Controllers
                 throw ex;
             }
             return Json(result,JsonRequestBehavior.AllowGet);
-
+           
         }
 
+        public ActionResult Add_update()
+        {
+            return View();
+        }
 
+        public string SAVE_DATA(string firstName,string LastName, int Contact,string DO)
+        {
+            DataSet ds = new DataSet();
+            string ss = ConfigurationManager.ConnectionStrings["qq"].ToString();
+            SqlConnection con = new SqlConnection(ss);
+            SqlCommand cmd = new SqlCommand("INSERT_UPDATE", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("id", 0);
+            cmd.Parameters.AddWithValue("firstName", firstName);
+            cmd.Parameters.AddWithValue("lastName", LastName);
+            cmd.Parameters.AddWithValue("contact", Contact);
+            cmd.Parameters.AddWithValue("DOB", DateTime.Today);
+            cmd.Parameters.AddWithValue("mode",1);
+
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.SelectCommand = cmd;
+            sqlDataAdapter.Fill(ds);
+            return "";
+        }
     }
 }
