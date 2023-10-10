@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Update_data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+    @using System.Data;
+
+
+@{
+    DataTable OBJ_Result = Model.Tables[0];
+
+    string first_name = OBJ_Result.Rows[0]["firstName"].ToString();
+    string lastName = OBJ_Result.Rows[0]["lastName"].ToString();
+    string contact = OBJ_Result.Rows[0]["contact"].ToString();
+    string DOB = OBJ_Result.Rows[0]["DOB"].ToString();
+ 
+}
+
+
+
+<h2>Update data</h2>
+
+<h2>Add update</h2>
+<input type="text" id="txt_firstName" placeholder="Enter First Name" value="@first_name" />
+<br />
+<br />
+<input type="text" id="txt_LastName" placeholder="Enter Last Name" value="@lastName" />
+<br />
+<br />
+<input type="tel" id="txt_Contact" placeholder="Enter Contact Name" value="@contact" />
+<br />
+<br />
+<input id="txt_DOB" type="date" value="@DOB" />
+<br />
+<br />
+<button id="btn_save">Update</button>
+

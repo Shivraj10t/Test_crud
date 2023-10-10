@@ -87,5 +87,61 @@ namespace Test_crud.Controllers
             sqlDataAdapter.Fill(ds);
             return "";
         }
+        public ActionResult Update_data(int id)
+        {
+
+
+            DataSet ds = new DataSet();
+            string result = string.Empty;
+            try
+            {
+                string ss = ConfigurationManager.ConnectionStrings["qq"].ToString();
+                SqlConnection con = new SqlConnection(ss);
+                SqlCommand cmd = new SqlCommand("select_data", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@P_ID", id);
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+                sqlDataAdapter.SelectCommand = cmd;
+                sqlDataAdapter.Fill(ds);
+                result = JsonConvert.SerializeObject(ds);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return View(ds);
+        }
+
+public JsonResult get_data(int student_id)
+        {
+            DataSet ds = new DataSet();
+            string result = string.Empty;
+            try
+            {
+                string ss = ConfigurationManager.ConnectionStrings["qq"].ToString();
+                SqlConnection con = new SqlConnection(ss);
+                SqlCommand cmd = new SqlCommand("select_data", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@P_ID", student_id);
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+                sqlDataAdapter.SelectCommand = cmd;
+                sqlDataAdapter.Fill(ds);
+                result = JsonConvert.SerializeObject(ds);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Json(result,JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

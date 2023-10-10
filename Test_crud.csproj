@@ -182,6 +182,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Add_update.cshtml" />
+    <Content Include="Views\Student\Update_data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
